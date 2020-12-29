@@ -18,14 +18,14 @@ mongoose.connection.on('error', (err) => {
 
 require('./config/models/usermodel');
 
+app.use(express.json());
+
+app.use(require('./routes/auth'));
+
 const customMiddleware = (req,res,next) => {
     console.log('object');
     next();
 }
-
-app.get('/',customMiddleware,(req,res) => {
-    res.send('Hello!');
-});
 
 app.get('/about',(req,res) => {
     res.send('Hello2!');
